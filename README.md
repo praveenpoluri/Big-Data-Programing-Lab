@@ -1,2 +1,2 @@
-# Big-Data-Programing-Lab1
-Map-reduce-Hive-Solr
+# Big-Data-Programing-Labs
+
