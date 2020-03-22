@@ -1,0 +1,9 @@
+hdfs dfs -mkdir /user/cloudera/BDPLab1
+hdfs dfs -mkdir /user/cloudera/BDPLab1/input
+hadoop fs -put youtubedata.txt /user/cloudera/BDPLab1/input
+
+hadoop jar Problem1.jar Problem1 /user/cloudera/BDPLab1/input/youtubedata.txt /user/cloudera/BDPLab1/outputProb1
+hadoop fs -cat /user/cloudera/BDPLab1/outputProb1/part-r-00000 | sort -t$'\t' -K2 -nr | head -n5 > resultProb1.txt
+
+hadoop jar Problem2.jar Problem2 /user/cloudera/BDPLab1/input/youtubedata.txt /user/cloudera/BDPLab1/outputProb2
+hadoop fs -cat /user/cloudera/BDPLab1/outputProb2/part-r-00000 | sort -t$'\t' -K2 -nr | head -n10 > resultProb2.txt
