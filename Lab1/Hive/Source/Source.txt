@@ -1,0 +1,49 @@
+Enter into hive using Hive command.
+Create database called hivedb in hive using below command:
+create database hivedb;
+After creating the database we need to use the same for creating the table by using below command:
+use hivedb;
+
+Create a table called heroes_info using the below command:
+create table heroes_info(id int, name string, gender string, eyecolor string, race string, haircolor string, height int, publisher string, skincolor string, alignment string, weight int) row format delimited fields terminated by ‘,’ stored as textfile;
+
+Load the heroes_information.csv into the newly created table heroes_info using following command:
+load data local inpath‘/home/cloudera/Downloads/heroes_information’ into table heroes_info; Query the heroes_info table to check the data has been loaded into table using below command: select * from heroes_info; Screenshot
+
+Repeat the above steps for creating a table called super_hero_powers and load the data in to it.
+
+Query1:
+Select sum(weight) from heroes_info where height>100;
+
+Query2:
+Select name,height from heroes_info order by height desc limit 10;
+
+Query3:
+Select concat(gender,"--",height) from heroes_info where haircolor="No Hair";
+
+Query4:
+Select avg(height) from heroes_info where gender="Female";
+
+Query5:
+Select name from heroes_info where height between 150 and 160;
+
+Query6:
+Select gender, case when gender = 'Male' then 'male_gender' else 'female_gender' end from heroes_info;
+
+Query7:
+Select a.name,a.haircolor,b.energy_absorption from heroes_info a join super_hero_powers b on a.name=b.hero_name where b.energy_absorption == "TRUE";
+
+Query8:
+Create table joined_table (hero_name string, eyecolor string, agility string, durabililty string)
+row format delimited
+fields terminated by ','
+stored as textfile;
+
+Insert into table joined_table select a.name,a,eyecolor,b.agility,b.durability from heroes_info a join super_hero_powers b on a.name=b.hero_name;
+Select *from joined_table;
+
+Query9:
+Select count(id) from heroes_info where (height between 170 and 200) and (weight between 50 and 100);
+
+Query10:
+select name from heroes_info where publisher like '%comics%';
