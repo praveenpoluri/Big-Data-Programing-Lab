@@ -1,0 +1,9 @@
+after creating the jar, execute the following commands in terminal to get the output.
+
+Load the input data set to input directory of hdfs
+
+ $ hadoop fs -put /home/cloudera/FacebookFriendsData.txt input/
+
+Then execute the below command
+
+$ hadoop jar mutualfriends.jar FacebookFriends input/FacebookFriendsData.txt mutualfriendsoutput
